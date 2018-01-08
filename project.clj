@@ -27,7 +27,7 @@
                            :verbose false
                            :source-map true}}
                {:id "runtests"
-                :source-paths ["dev" "src" "test"]
+                :source-paths ["dev" "test"]
                 :figwheel true
                 :compiler {:main demosc.starter
                            :output-to "target/tests/runtests.js"
