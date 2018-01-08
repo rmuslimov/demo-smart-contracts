@@ -1,0 +1,19 @@
+{
+  "name": "demosc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "target/dev/runtests.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "deasync": "^0.1.12",
+    "ganache-cli": "^6.0.3",
+    "ganache-core": "^2.0.2",
+    "web3": "^0.20.2",
+    "ws": "^4.0.0"
+  },
+  "devDependencies": {},
+  "author": "",
+  "license": "ISC"
+}
