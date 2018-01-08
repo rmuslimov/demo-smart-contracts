@@ -1,9 +1,14 @@
 (ns demosc.core
-  (:require [mount.core :as mount]
+  (:require [cljs.nodejs :as nodejs]
+            [mount.core :as mount]
             [demosc.smart-contracts]
             [district.server.smart-contracts :as contracts]
             [district.server.web3 :refer [web3]]
             [cljs-web3.eth :as web3-eth]))
+
+(nodejs/enable-util-print!)
+
+(set! (.-error js/console) (fn [x] (.log js/console x)))
 
 (defn get-admin []
   (first (web3-eth/accounts @web3)))
@@ -38,7 +43,7 @@
 
   (contracts/contract-call :foo :getValue "key")
   (contracts/contract-call :foo :getAdmin)
-  (contracts/contract-call :foo :tryadd 3 4)
+  (contracts/contract-call :foo :tryadd 4 4)
   (contracts/contract-call :foo :setValue "key" 22 {:from (get-admin)})
 
   )

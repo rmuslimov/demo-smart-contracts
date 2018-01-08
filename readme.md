@@ -6,10 +6,10 @@ Very handy for development, contracts building, reloading and running tests with
 
 ## Usage
 
-1. Run Emacs REPL (`C-c C-M-J`)
-2. Init all emacs helpers code. Go to `cider.el` and call `C-c C-k`.
+1. Init all emacs helpers code. Go to `cider.el` and call `C-c C-k`.
+2. Run Emacs REPL (`C-c C-M-J`)
 3. Start testrpc in terminal  (`ganache-cli`)
-4. Start node app in another terminal (`node target/dev/runtests.js`)
+4. Start node app in another terminal (`node target/dev/main.js`)
 5. Compiling contracts code can be executed after changes with:
 
 ```sh

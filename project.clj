@@ -9,28 +9,29 @@
                  [mount "0.1.11"]
 
                  [district0x/district-server-web3 "1.0.1"]
-                 [district0x/district-server-smart-contracts "1.0.3"]]
+                 [district0x/district-server-smart-contracts "1.0.3"]
+                 [district0x/bignumber "1.0.1"]]
   :clean-targets ^{:protect false} ["target"]
   :target-path "target/%s"
   :plugins [[lein-cljsbuild "1.1.7"  :exclusions [[org.clojure/clojure]]]
             [lein-figwheel "0.5.13"]]
   :cljsbuild {:builds
-              [{:id "deploy"
+              [{:id "dev"
                 :source-paths ["dev" "src" "test"]
                 :figwheel true
                 :compiler {:main demosc.core
-                           :output-to "target/deploy/deploy.js"
-                           :output-dir "target/deploy/js"
+                           :output-to "target/dev/main.js"
+                           :output-dir "target/dev/js"
                            :target :nodejs,
                            :optimizations :none,
                            :verbose false
                            :source-map true}}
-               {:id "dev"
+               {:id "runtests"
                 :source-paths ["dev" "src" "test"]
                 :figwheel true
                 :compiler {:main demosc.starter
-                           :output-to "target/dev/runtests.js"
-                           :output-dir "target/dev/js"
+                           :output-to "target/tests/runtests.js"
+                           :output-dir "target/tests/js"
                            :target :nodejs,
                            :optimizations :none,
                            :verbose false

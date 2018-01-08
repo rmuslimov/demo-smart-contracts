@@ -2,3 +2,6 @@
 node_modules/
 package-lock.json
 resources/public/contracts/build/
+/figwheel_server.log
+/.nrepl-port
+/target/
