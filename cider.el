@@ -55,7 +55,7 @@
                             "project.clj")))
     (if default-directory
         (progn
-          (shell-command command-compile-solidity buffer-name "*Messages*")
+          (shell-command command-compile-solidity buffer-name)
           (with-current-buffer buffer-name
             (message (concat (buffer-string) "Done."))))
       (error "Root directory of project not found."))))

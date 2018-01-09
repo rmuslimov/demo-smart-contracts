@@ -6,6 +6,8 @@ function solc-err-only {
 }
 
 solc-err-only --overwrite --optimize --bin --abi Foo.sol -o ../build/
+solc-err-only --overwrite --optimize --bin --abi Bar.sol -o ../build/
 
 cd ../build
 wc -c Foo.bin | awk '{print "Foo: " $1}'
+wc -c Bar.bin | awk '{print "Bar: " $1}'

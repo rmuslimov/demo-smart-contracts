@@ -11,41 +11,46 @@
 
 (nodejs/enable-util-print!)
 
-(set! (.-erro rjs/console) (fn [x] (.log js/console x)))
+(set! (.-error js/console) (fn [x] (.log js/console x)))
 
 (defn get-admin []
   (first (web3-eth/accounts @web3)))
 
-(declare start)
-(declare stop)
-(mount/defstate deployer
-  :start (start (mount/args)) :stop (stop deployer))
-
 (defn start [args]
   "Deploy all contracts from scratch here."
-  (contracts/deploy-smart-contract! :foo {:arguments [(get-admin)]}))
+  (contracts/deploy-smart-contract! :bar)
+  (contracts/deploy-smart-contract!
+   :foo
+   {:arguments [(get-admin)]
+    :placeholder-replacements {"__Bar.sol:Bar___________________________" :bar}})
+  )
 
-(defn stop [deployer]
-  nil)
+(mount/defstate deployer :start (start (mount/args)) :stop (fn [deployer] nil))
 
 (defn -main []
+  nil)
+
+(set! *main-cli-fn* -main)
+
+(comment
   (-> (mount/with-args
         {:web3 {:port 8545}
          :smart-contracts {:contracts-var #'demosc.smart-contracts/smart-contracts
                            :print-gas-usage? true
                            :auto-mining? true}})
-      (mount/start)))
+      (mount/start))
 
-(set! *main-cli-fn* -main)
-
-(comment
   (mount/stop)
 
-  (contracts/contract-address :foo)
+  (contracts/deploy-smart-contract! :bar)
+
+  (contracts/contract-address :bar)
   (contracts/deploy-smart-contract! :foo {:arguments [(get-admin)]})
 
   (contracts/contract-call :foo :getValue "key")
   (contracts/contract-call :foo :getAdmin)
+  (contracts/contract-call :foo :tryadd 4 4)
+  (contracts/contract-call :foo :library_add 4 4)
   (contracts/contract-call :foo :tryadd 4 4)
   (contracts/contract-call :foo :setValue "key" 22 {:from (get-admin)})
 

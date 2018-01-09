@@ -1,5 +1,7 @@
 pragma solidity ^0.4.18;
 
+import "Bar.sol";
+
 contract Foo {
 
     address public admin;
@@ -40,5 +42,9 @@ contract Foo {
 
     function tryadd(uint a, uint b) public constant returns (uint) {
         return a + b;
+    }
+
+    function library_add(uint a, uint b) public constant returns (uint) {
+        return Bar.inc_tryadd(a, b);
     }
 }
